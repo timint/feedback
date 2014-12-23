@@ -511,13 +511,12 @@
 						
 						post.img = img;
 						post.note = $('#feedback-note').val();
-
+                        var data = {data: JSON.stringify(post)};
 						$.ajax({
 							url: settings.ajaxURL,
-							contentType: 'application/json',
 							dataType: 'json',
 							type: 'POST',
-							data: JSON.stringify(post),
+							data: data,
 							success: function() {
 								$('#feedback-module').append(settings.tpl.submitSuccess);
 							},
