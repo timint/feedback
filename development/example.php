@@ -10,7 +10,7 @@ $data = json_decode($_SESSION['data']);
 	<script src="feedback.js"></script>
 	<link rel="stylesheet" href="feedback.min.css" />
 	<script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', 
+        document.addEventListener('DOMContentLoaded',
                                   function () {
         $.feedback({
             ajaxURL: 'example-listener.php',
@@ -33,9 +33,9 @@ $data = json_decode($_SESSION['data']);
         <?php
             if (isset($data)) :
         ?>
-             
-        <img src="<?php echo $data->img; ?>"/> 
-        <?php 
+
+        <img src="<?php echo $data->img; ?>"/>
+        <?php
             endif;
         ?>
     </main>
