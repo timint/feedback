@@ -131,9 +131,9 @@ The URL where the plugin can download html2canvas.js from.
 
 ### tpl (Object of HTML Strings)
 
-The templates of the plugin. You could change them any time, but keep in mind to keep the elements' ids and classes so the script won't break.
+The templates of the plugin. Each property of the tpl object is an HTML string describing a phase of the feedback tool. You could change them any time, but keep in mind to keep the elements' ids and classes so the script won't break.
 
-`Default: ...`
+`Default: {'description': '...', 'highlighter': '...', ...}`
 
 * description: Description of the feedback module for the user
 * highlighter: A series of controls to highlight and censor information on the page
@@ -180,7 +180,7 @@ Sets whether the next modal for entering description should appear or not
 
 ### onScreenshotTaken (Function)
 
-A callback function to be called when clicking on take screenshot button. The callback function's prototype is `function(post)`
+A callback function to be called when clicking on take screenshot button. The callback function's prototype is `function(image)`
 
 `Default: function () {}`
 
