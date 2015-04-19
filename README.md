@@ -135,11 +135,11 @@ The templates of the plugin. You could change them any time, but keep in mind to
 
 `Default: ...`
 
-    * description
-    * highlighter
-    * overview
-    * submitSuccess
-    * submitError
+* description: Description of the feedback module for the user
+* highlighter: A series of controls to highlight and censor information on the page
+* overview: Overview of what is going to be sent
+* submitSuccess: Message displayed on succesful upload
+* submitError: Message displayed if the upload fails
 
 ### onClose (Function)
 
