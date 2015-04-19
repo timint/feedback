@@ -1,5 +1,6 @@
 // feedback.js
 // 2013, Kázmér Rapavi, https://github.com/ivoviz/feedback
+// 2015, Modified by Rafael Diaz de Leon
 // Licensed under the MIT license.
 // Version 2.0
 
@@ -8,7 +9,7 @@
 	$.feedback = function(options) {
 
     var settings = $.extend({
-			ajaxURL: 				'',
+			endpoint: 				'',
 			postBrowserInfo: 		true,
 			postHTML:				true,
 			postURL:				true,
@@ -514,7 +515,7 @@
 						post.note = $('#feedback-note').val();
                         var data = {feedback: JSON.stringify(post)};
 						$.ajax({
-							url: settings.ajaxURL,
+							url: settings.endpoint,
 							dataType: 'json',
 							type: 'POST',
 							data: data,
