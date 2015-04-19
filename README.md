@@ -129,11 +129,17 @@ The URL where the plugin can download html2canvas.js from.
 
 `Default: html2canvas.js`
 
-### tpl.description / tpl.highlighter / tpl.overview / tpl.submitSuccess / tpl.submitError (String / HTML)
+### tpl (Object of HTML Strings)
 
-The template of the plugin. You could change it any time, but keep in mind to keep the elements' ids and classes so the script won't break.
+The templates of the plugin. You could change them any time, but keep in mind to keep the elements' ids and classes so the script won't break.
 
 `Default: ...`
+
+    * description
+    * highlighter
+    * overview
+    * submitSuccess
+    * submitError
 
 ### onClose (Function)
 
