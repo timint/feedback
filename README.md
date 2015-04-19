@@ -3,21 +3,23 @@ feedback
 
 Feedback tool similar to the Google Feedback based on jQuery and HTML2Canvas.
 
+(Derived of ivoviz/feedback)
+
 ## Usage
 
 Load jQuery, the plugin, and its CSS:
 ```html
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="feedback.js"></script>
-	<link rel="stylesheet" href="feedback.min.css" />
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="feedback.js"></script>
+    <link rel="stylesheet" href="feedback.min.css" />
 ```
 
 Init plugin:
 ```html
     <script type="text/javascript">
         $.feedback({
-            ajaxURL: 'http://test.url.com/feedback',
-            html2canvasURL: 'js/html2canvas.js'
+            endpoint: 'http://example.com/feedback'
         });
     </script>
 ```
@@ -31,23 +33,19 @@ Init plugin:
 
 Pretty much it should be working on any browser with `canvas` support. Browsers with no canvas support won't display the feedback button.
 
-## Demo
-
-[http://ivoviz.github.io/feedback/](http://ivoviz.github.io/feedback/) - Click "Send feedback" at the bottom right of the page.
-
 ## Post Data
 
-The information from the client will be sent through ajax post request. The information is in JSON format.
+The information from the client will be sent through ajax POST request. The information is in JSON format.
 
-* `post.browser` - Browser information.
-* `post.url` - The page URL.
-* `post.note` - Description of the feedback.
-* `post.img` - The screenshot of the feedback. - **base64 encoded data URI!**
-* `post.html` - The structure of the page.
+* `browser` - Browser information.
+* `url` - The page URL.
+* `note` - Description of the feedback.
+* `img` - The screenshot of the feedback. - **base64 encoded data URI!**
+* `html` - The structure of the page.
 
 ## Options
 
-### ajaxURL (String)
+### endpoint (String)
 
 The URL where the plugin will post the screenshot and additional informations. (JSON datatype)
 
@@ -178,7 +176,7 @@ Sets whether the next modal for entering description should appear or not
 
 A callback function to be called when clicking on take screenshot button. The callback function's prototype is `function(post)`
 
-`Default: {}`
+`Default: function () {}`
 
 ### isDraggable (Boolean)
 
