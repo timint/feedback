@@ -61,7 +61,7 @@ Whether you want your client to post their browser information (such as useragen
 
 Whether you want your client to post the page's HTML structure.
 
-`Default: true`
+`Default: false`
 
 ### postURL (Boolean)
 
@@ -74,6 +74,13 @@ Whether you want your client to post the URL of the page.
 Url to the proxy which is to be used for loading cross-origin images. If left empty, cross-origin images won't be loaded.
 
 `Default: ''`
+
+### postExtraInfo (Function)
+
+A function that returns extra information to be posted, it should return an object with the description (`desc`) and
+the information (`info`) that you want to be posted.
+
+`Default: null`
 
 ### letterRendering (Boolean)
 

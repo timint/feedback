@@ -13,6 +13,7 @@ $.feedback = function (options) {
         postBrowserInfo:        true,
         postURL:                true,
         postHTML:               false,
+        postExtraInfo:          null,
         proxy:                  undefined,
         letterRendering:        false,
         initButtonText:         'Send feedback',
@@ -598,6 +599,9 @@ $.feedback = function (options) {
                         data: data,
                         success: function() {
                             $('#feedback-module').append(settings.tpl.submitSuccess);
+                            if (typeof postExtraInfo === 'function') {
+                                post.extraInfo = postExtraInfo();
+                            }
                         },
                         error: function(){
                             $('#feedback-module').append(settings.tpl.submitError);
