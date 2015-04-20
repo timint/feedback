@@ -521,7 +521,7 @@ $.feedback = function (options) {
                 $('.feedback-sethighlight').removeClass('feedback-active');
             });
 
-            $(document).on('click', '#feedback-highlighter-next', function() {
+            $('#feedback-highlighter-next').unbind('click').on('click', function() {
                 canDraw = false;
                 $('#feedback-canvas').css('cursor', 'default');
                 var sy = $(document).scrollTop(),
@@ -582,7 +582,7 @@ $.feedback = function (options) {
                 $('#feedback-note').val(tx);
             });
 
-            $(document).on('click', '#feedback-submit', function() {
+            $('#feedback-submit').unbind('click').on('click', function() {
                 var data;
                 canDraw = false;
 
