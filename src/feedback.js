@@ -583,6 +583,7 @@ $.feedback = function (options) {
             });
 
             $(document).on('click', '#feedback-submit', function() {
+                var data;
                 canDraw = false;
 
                 if ($('#feedback-note').val().length > 0) {
@@ -591,7 +592,10 @@ $.feedback = function (options) {
 
                     post.img = img;
                     post.note = $('#feedback-note').val();
-                    var data = {feedback: JSON.stringify(post)};
+                    if (typeof postExtraInfo === 'function') {
+                        post.extraInfo = postExtraInfo();
+                    }
+                    data = {feedback: JSON.stringify(post)};
                     $.ajax({
                         url: settings.endpoint,
                         dataType: 'json',
@@ -599,9 +603,6 @@ $.feedback = function (options) {
                         data: data,
                         success: function() {
                             $('#feedback-module').append(settings.tpl.submitSuccess);
-                            if (typeof postExtraInfo === 'function') {
-                                post.extraInfo = postExtraInfo();
-                            }
                         },
                         error: function(){
                             $('#feedback-module').append(settings.tpl.submitError);
