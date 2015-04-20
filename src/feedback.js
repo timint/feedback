@@ -141,7 +141,7 @@ $.feedback = function (options) {
 
             rect 	= {};
             drag 	= false;
-            highlight 	= 1,
+            highlight 	= 1;
             post	= {};
 
             if (settings.postBrowserInfo) {
@@ -195,12 +195,13 @@ $.feedback = function (options) {
                     dheight	= rect.h;
                     dtype	= 'highlight';
 
-                    if (dwidth == 0 || dheight == 0) return;
+                    if (dwidth === 0 || dheight === 0) return;
 
                     if (dwidth < 0) {
                         dleft 	+= dwidth;
                         dwidth 	*= -1;
                     }
+
                     if (dheight < 0) {
                         dtop 	+= dheight;
                         dheight *= -1;
@@ -214,7 +215,7 @@ $.feedback = function (options) {
                         dwidth = $(document).width() - dleft;
                     }
 
-                    if (highlight == 0) {
+                    if (highlight === 0) {
                         dtype = 'blackout';
                     }
 
@@ -269,15 +270,15 @@ $.feedback = function (options) {
                                 parseInt($(this).css('left'), 10),
                                 parseInt($(this).css('top'), 10),
                                 $(this).width(), $(this).height()
-                            )
+                            );
                         }
                     });
 
-                    if (highlight == 0) {
+                    if (highlight === 0) {
                         ctx.fillStyle = 'rgba(0,0,0,0.5)';
                         ctx.fillRect(rect.startX, rect.startY, rect.w, rect.h);
                     }
-                    }
+                }
             });
 
             if (settings.highlightElement) {
@@ -297,10 +298,10 @@ $.feedback = function (options) {
                                 return;
                             }
 
-                            if (e.pageX > $(this).offset().left 
-                                && e.pageX < $(this).offset().left + $(this).width() 
-                                && e.pageY > $(this).offset().top + parseInt($(this).css('padding-top'), 10) 
-                                && e.pageY < $(this).offset().top + $(this).height() + parseInt($(this).css('padding-top'), 10))
+                            if (e.pageX > $(this).offset().left && 
+                                e.pageX < $(this).offset().left + $(this).width() && 
+                                e.pageY > $(this).offset().top + parseInt($(this).css('padding-top'), 10) &&
+                                e.pageY < $(this).offset().top + $(this).height() + parseInt($(this).css('padding-top'), 10))
                             {
                                 tmpHighlighted.push($(this));
                             }
@@ -332,7 +333,7 @@ $.feedback = function (options) {
                                 }
                             });
 
-                            if (highlight == 0) {
+                            if (highlight === 0) {
                                 dtype = 'blackout';
                                 ctx.fillStyle = 'rgba(0,0,0,0.5)';
                                 ctx.fillRect(_x, _y, _w, _h);
@@ -456,7 +457,7 @@ $.feedback = function (options) {
                                     parseInt($(this).css('top'), 10),
                                     $(this).width(),
                                     $(this).height()
-                                )
+                                );
                             }
                         });
                     }
@@ -470,8 +471,10 @@ $.feedback = function (options) {
             });
 
             $(document).on('click', '#feedback-close', function() {
+                var _hidx;
+
                 if (settings.highlightElement && $(this).parent().attr('data-highlight-id')) {
-                    var _hidx = $(this).parent().attr('data-highlight-id');
+                    _hidx = $(this).parent().attr('data-highlight-id');
                 }
 
                 $(this).parent().remove();
