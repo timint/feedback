@@ -592,8 +592,8 @@ $.feedback = function (options) {
 
                     post.img = img;
                     post.note = $('#feedback-note').val();
-                    if (typeof postExtraInfo === 'function') {
-                        post.extraInfo = postExtraInfo();
+                    if (typeof settings.postExtraInfo === 'function') {
+                        post.extraInfo = settings.postExtraInfo();
                     }
                     data = {feedback: JSON.stringify(post)};
                     $.ajax({
