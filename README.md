@@ -82,6 +82,13 @@ the information (`info`) that you want to be posted.
 
 `Default: null`
 
+### categories (Array of Strings)
+
+An optional list of categories to be displayed, the list will be displayed along with the description of the bug
+on a select.
+
+`Default: []`
+
 ### letterRendering (Boolean)
 
 Whether to render each letter seperately. Necessary if letter-spacing is used.

@@ -14,6 +14,7 @@ $.feedback = function (options) {
         postURL:                true,
         postHTML:               false,
         postExtraInfo:          null,
+        categories:             [],
         proxy:                  undefined,
         letterRendering:        false,
         initButtonText:         'Send feedback',
@@ -522,15 +523,29 @@ $.feedback = function (options) {
             });
 
             $('#feedback-highlighter-next').unbind('click').on('click', function() {
+                var select = '',
+                    options = '';
+
                 canDraw = false;
                 $('#feedback-canvas').css('cursor', 'default');
                 var sy = $(document).scrollTop(),
                 dh = $(window).height();
                 $('#feedback-helpers').hide();
                 $('#feedback-highlighter').hide();
+
+                if (settings.categories.length > 0) {
+                    for (i in settings.categories) {
+                       options += '<option value="' + settings.categories[i] + '">' + settings.categories[i] + '</option>';
+                    }
+
+                    select = '<label class="">' + 'Category:' + '</label>';
+                    select += '<select id="feedback-category" name="category">' + options + '</select>';
+                }
+
                 if (!settings.screenshotStroke) {
                     redraw(ctx, false);
                 }
+
                 html2canvas($('body'), {
                     proxy: settings.proxy,
                     letterRendering: settings.letterRendering
@@ -545,13 +560,14 @@ $.feedback = function (options) {
                     $(document).scrollTop(sy);
                     post.img = img;
                     settings.onScreenshotTaken(post.img);
-                    if(settings.showDescriptionModal) {
+                    if (settings.showDescriptionModal) {
                         $('#feedback-canvas-tmp').remove();
                         $('#feedback-overview').show();
                         $('#feedback-overview-description-text>textarea').remove();
                         $('#feedback-overview-screenshot>img').remove();
                         $('<textarea id="feedback-overview-note">' + $('#feedback-note').val() + '</textarea>').insertAfter('#feedback-overview-description-text h3:eq(0)');
                         $('#feedback-overview-screenshot').append('<img class="feedback-screenshot" src="' + img + '" />');
+                        $('#feedback-overview-description-text').append(select);
                     } else {
                         $('#feedback-module').remove();
                         close();
@@ -591,6 +607,11 @@ $.feedback = function (options) {
 
                     post.img = img;
                     post.note = $('#feedback-note').val();
+
+                    if (settings.categories.length > 0) {
+                        post.category = $('#feedback-category').val();
+                    }
+
                     if (typeof settings.postExtraInfo === 'function') {
                         post.extraInfo = settings.postExtraInfo();
                     }
