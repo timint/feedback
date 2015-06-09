@@ -35,7 +35,8 @@ $.feedback = function (options) {
             overview: '<div id="feedback-overview"><div class="feedback-logo">Feedback</div><div id="feedback-overview-description"><div id="feedback-overview-description-text"><h3>Description</h3><h3 class="feedback-additional">Additional info</h3><div id="feedback-additional-none"><span>None</span></div><div id="feedback-browser-info"><span>Browser Info</span></div><div id="feedback-page-info"><span>Page Info</span></div><div id="feedback-page-structure"><span>Page Structure</span></div></div></div><div id="feedback-overview-screenshot"><h3>Screenshot</h3></div><div class="feedback-buttons"><button id="feedback-submit" class="feedback-submit-btn feedback-btn-blue">Submit</button><button id="feedback-overview-back" class="feedback-back-btn feedback-btn-gray">Back</button></div><div id="feedback-overview-error">Please enter a description.</div><div class="feedback-wizard-close"></div></div>',
             submitSuccess: '<div id="feedback-submit-success"><div class="feedback-logo">Feedback</div><p>Thank you for your feedback. We value every piece of feedback we receive.</p><p>We cannot respond individually to every one, but we will use your comments as we strive to improve your experience.</p><button class="feedback-close-btn feedback-btn-blue">OK</button><div class="feedback-wizard-close"></div></div>',
             submitError: '<div id="feedback-submit-error"><div class="feedback-logo">Feedback</div><p>Sadly an error occured while sending your feedback. Please try again.</p><button class="feedback-close-btn feedback-btn-blue">OK</button><div class="feedback-wizard-close"></div></div>',
-	    submitLoading: '<div id="feedback-submit-loading"><div class="feedback-logo">Uploading</div><p>Please wait...</p></div>'
+	    submitLoading: '<div id="feedback-submit-loading"><div class="feedback-logo">Uploading</div><p>Please wait...</p></div>',
+            categories: '<label>Categories: </label>'
         },
         onClose:            function() {},
         screenshotStroke:   true,
@@ -534,47 +535,55 @@ $.feedback = function (options) {
                 dh = $(window).height();
                 $('#feedback-helpers').hide();
                 $('#feedback-highlighter').hide();
-
-                if (settings.categories.length > 0) {
-                    for (i in settings.categories) {
-                       options += '<option value="' + settings.categories[i] + '">' + settings.categories[i] + '</option>';
-                    }
-
-                    select = '<label class="">' + 'Category:' + '</label>';
-                    select += '<select id="feedback-category" name="category">' + options + '</select>';
-                }
-
                 if (!settings.screenshotStroke) {
                     redraw(ctx, false);
                 }
-
                 html2canvas($('body'), {
+                    onrendered: function(canvas) {
+                        var select = $('<div id="feedback-category"><select name="category"></select></div>'),
+                            options = '',
+                            i;
+
+                        if (!settings.screenshotStroke) {
+                            redraw(ctx);
+                        }
+
+                        _canvas = $('<canvas id="feedback-canvas-tmp" width="'+ w +'" height="'+ dh +'"/>').hide().appendTo('body');
+                        _ctx = _canvas.get(0).getContext('2d');
+                        _ctx.drawImage(canvas, 0, sy, w, dh, 0, 0, w, dh);
+                        img = _canvas.get(0).toDataURL();
+                        $(document).scrollTop(sy);
+                        post.img = img;
+                        settings.onScreenshotTaken(post.img);
+                        if (settings.showDescriptionModal) {
+                            if (settings.categories && settings.categories.length > 0) {
+                                for (i in settings.categories) {
+                                    options += '<option value="' + settings.categories[i] + '">' + settings.categories[i] + '</option>';
+                                }
+
+                                select.prepend(settings.tpl.categories);
+
+                                select.children('select').append(options);
+                            }
+
+                            $('#feedback-canvas-tmp').remove();
+                            $('#feedback-overview').show();
+                            $('#feedback-overview-description-text>textarea').remove();
+                            $('#feedback-overview-screenshot>img').remove();
+                            $('<textarea id="feedback-overview-note">' + $('#feedback-note').val() + '</textarea>').insertAfter('#feedback-overview-description-text h3:eq(0)');
+                            $('#feedback-overview-screenshot').append('<img class="feedback-screenshot" src="' + img + '" />');
+                            if (i > 0) {
+                                $('#feedback-category').remove();
+                                $('#feedback-overview-description-text').before(select);
+                            }
+                        } else {
+                            $('#feedback-module').remove();
+                            close();
+                            _canvas.remove();
+                        }
+                    },
                     proxy: settings.proxy,
                     letterRendering: settings.letterRendering
-                }).then(function(canvas) {
-                    if (!settings.screenshotStroke) {
-                        redraw(ctx);
-                    }
-                    _canvas = $('<canvas id="feedback-canvas-tmp" width="'+ w +'" height="'+ dh +'"/>').hide().appendTo('body');
-                    _ctx = _canvas.get(0).getContext('2d');
-                    _ctx.drawImage(canvas, 0, sy, w, dh, 0, 0, w, dh);
-                    img = _canvas.get(0).toDataURL();
-                    $(document).scrollTop(sy);
-                    post.img = img;
-                    settings.onScreenshotTaken(post.img);
-                    if (settings.showDescriptionModal) {
-                        $('#feedback-canvas-tmp').remove();
-                        $('#feedback-overview').show();
-                        $('#feedback-overview-description-text>textarea').remove();
-                        $('#feedback-overview-screenshot>img').remove();
-                        $('<textarea id="feedback-overview-note">' + $('#feedback-note').val() + '</textarea>').insertAfter('#feedback-overview-description-text h3:eq(0)');
-                        $('#feedback-overview-screenshot').append('<img class="feedback-screenshot" src="' + img + '" />');
-                        $('#feedback-overview-description-text').append(select);
-                    } else {
-                        $('#feedback-module').remove();
-                        close();
-                        _canvas.remove();
-                    }
                 });
             });
 
@@ -600,18 +609,20 @@ $.feedback = function (options) {
             });
 
             $('#feedback-submit').unbind('click').on('click', function() {
-                var data;
+                var data,
+                    category;
                 canDraw = false;
 
                 if ($('#feedback-note').val().length > 0) {
                     $('#feedback-submit-success,#feedback-submit-error').remove();
                     $('#feedback-overview').hide();
+                    category = $('#feedback-category');
 
                     post.img = img;
                     post.note = $('#feedback-note').val();
 
-                    if (settings.categories.length > 0) {
-                        post.category = $('#feedback-category').val();
+                    if (category) {
+                        post.category = category.children('select').val();
                     }
 
                     if (typeof settings.postExtraInfo === 'function') {
