@@ -15,6 +15,10 @@ def script():
 def style():
     return send_from_directory('./', 'feedback.css')
 
+@app.route('/icons.png')
+def icons():
+    return send_from_directory('./', 'icons.png')
+
 @app.route('/listener', methods=['GET', 'POST'])
 def listener():
     sleep(30)

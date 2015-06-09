@@ -122,6 +122,7 @@
   height: auto;
 }
 #feedback-submit-error,
+#feedback-submit-loading,
 #feedback-submit-success {
   top: 30%;
   left: 50%;
@@ -185,6 +186,7 @@
 #feedback-highlighter,
 #feedback-overview,
 #feedback-submit-success,
+#feedback-submit-loading,
 #feedback-submit-error {
   font-family: Arial,sans-serif;
   z-index: 40000;
