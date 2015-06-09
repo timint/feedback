@@ -524,7 +524,8 @@ $.feedback = function (options) {
 
             $('#feedback-highlighter-next').unbind('click').on('click', function() {
                 var select = '',
-                    options = '';
+                    options = '',
+		    i = 0;
 
                 canDraw = false;
                 $('#feedback-canvas').css('cursor', 'default');
