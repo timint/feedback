@@ -625,11 +625,11 @@ $.feedback = function (options) {
                         type: 'POST',
                         data: data,
                         success: function() {
-			    $('#feedback-uploading').remove();
+			    $('#feedback-submit-loading').remove();
                             $('#feedback-module').append(settings.tpl.submitSuccess);
                         },
                         error: function(){
-			    $('#feedback-uploading').remove();
+			    $('#feedback-submit-loading').remove();
                             $('#feedback-module').append(settings.tpl.submitError);
                         }
                     });
