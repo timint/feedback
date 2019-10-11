@@ -29,13 +29,11 @@
   position: fixed;
 }
 .feedback-logo {
-  background: url(icons.png) -0px -0px no-repeat;
   width: 34px;
   margin-bottom: 16px;
   font-size: 16px;
   font-weight: normal;
   line-height: 32px;
-  padding-left: 40px;
   height: 32px;
 }
 .feedback-next-btn {
