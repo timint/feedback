@@ -1,6 +1,6 @@
 //medium+ screen sizes
 @media only screen and (min-width:992px) {
-    .desktop-only {
+    .feedback-btn {
         display:block !important;
     }
 }
@@ -11,7 +11,7 @@
         display:block !important;
     }
  
-    .desktop-only {
+    .feedback-btn {
         display:none !important;
     }
 }
