@@ -49,7 +49,7 @@ $.feedback = function (options) {
 
     if (supportedBrowser && html2canvas) {
         if (isFeedbackButtonNative) {
-            $('body').append('<button class="feedback-btn feedback-btn-gray">' + settings.initButtonText + '</button>');
+            $('body').append('<button class="feedback-btn feedback-btn-gray desktop-only">' + settings.initButtonText + '</button>');
         }
 
         $(document).on('click', settings.feedbackButton, function(){
