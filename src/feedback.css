@@ -107,16 +107,16 @@
   bottom: 100px;
   right: 100px;
   position: fixed;
-  width: 540px;
-  height: 275px;
+  width: 70%;
+  //height: 275px;
 }
 #feedback-overview {
   display: none;
-  top: 10%;
-  left: 50%;
-  margin-left: -420px;
+  //top: 10%;
+  //left: 50%;
+  //margin-left: -420px;
   position: fixed;
-  width: 840px!important;
+  width: 80%!important;
   height: auto;
 }
 #feedback-submit-error,
