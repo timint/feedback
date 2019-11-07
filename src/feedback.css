@@ -113,8 +113,8 @@
 #feedback-overview {
   display: none;
   top: 10%;
-  left: 50%;
-  margin-left: -420px;
+  //left: 50%;
+  //margin-left: -420px;
   position: fixed;
   width: 80%!important;
   height: auto;
@@ -301,7 +301,7 @@
 .feedback-additional {  margin-bottom: 20px!important }
 #feedback-overview-description {  float: left }
 #feedback-overview-note {
-  width: 314px;
+  max-width: 314px;
   padding: 4px;
   height: 90px;
   outline: none;
