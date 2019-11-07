@@ -308,6 +308,7 @@
   height: 90px;
   outline: none;
   font-family: Arial,sans-serif;
+  border: 1px solid #adadad;
 }
 #feedback-overview-screenshot {  float: right }
 .feedback-screenshot {
