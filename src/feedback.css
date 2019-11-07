@@ -125,11 +125,12 @@
 #feedback-submit-loading,
 #feedback-submit-success {
   top: 30%;
-  left: 50%;
-  margin-left: -300px;
+  //left: 50%;
+  //margin-left: -300px;
   display: block;
   position: fixed;
-  width: 600px;
+  max-width: 600px;
+  width: 80%;
   height: auto;
 }
 .feedback-btn {
@@ -193,7 +194,8 @@
   background: #fff;
   border: 1px solid rgba(0,0,0,.333);
   padding: 30px 42px;
-  width: 540px;
+  max-width: 540px;
+  width: 80%;
   border: 1px solid rgba(0,0,0,.333);
   outline: 0;
   -webkit-box-shadow: 0 4px 16px rgba(0,0,0,.2);
