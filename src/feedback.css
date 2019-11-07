@@ -113,7 +113,7 @@
 }
 #feedback-overview {
   display: none;
-  top: 10%;
+  //top: 10%;
   //left: 50%;
   //margin-left: -420px;
   position: fixed;
