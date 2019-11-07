@@ -118,6 +118,7 @@
   //margin-left: -420px;
   position: fixed;
   width: 80%!important;
+  max-width: 840px!important;
   height: auto;
 }
 #feedback-submit-error,
@@ -302,7 +303,7 @@
 .feedback-additional {  margin-bottom: 20px!important }
 #feedback-overview-description {  float: left }
 #feedback-overview-note {
-  max-width: 314px;
+  width: 314px;
   padding: 4px;
   height: 90px;
   outline: none;
