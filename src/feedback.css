@@ -314,6 +314,8 @@
   max-width: 396px;
   padding: 1px;
   border: 1px solid #adadad;
+  width: 100%;
+  height: auto;
 }
 #feedback-overview-description-text span {
   font-size: 14px;
