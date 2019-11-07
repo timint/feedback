@@ -512,13 +512,13 @@ $.feedback = function (options) {
                 $('#feedback-welcome').show();
             });
 
-            $(document).on('mousedown', '.feedback-sethighlight', function() {
+            $(document).on('click', '.feedback-sethighlight', function() {
                 highlight = 1;
                 $(this).addClass('feedback-active');
                 $('.feedback-setblackout').removeClass('feedback-active');
             });
 
-            $(document).on('mousedown', '.feedback-setblackout', function() {
+            $(document).on('click', '.feedback-setblackout', function() {
                 highlight = 0;
                 $(this).addClass('feedback-active');
                 $('.feedback-sethighlight').removeClass('feedback-active');
