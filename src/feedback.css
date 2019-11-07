@@ -108,6 +108,7 @@
   right: 100px;
   position: fixed;
   width: 70%!important;
+  max-width: 540px;
   //height: 275px;
 }
 #feedback-overview {
