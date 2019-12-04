@@ -1,9 +1,6 @@
 feedback
 ========
 
-Feedback tool similar to the Google Feedback based on jQuery and HTML2Canvas.
-
-(Derived of ivoviz/feedback)
 
 ## Usage
 
