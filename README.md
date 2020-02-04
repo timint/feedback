@@ -1,4 +1,4 @@
-feedback
+Feedback Screenshot Tool
 ========
 
 
