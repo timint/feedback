@@ -201,6 +201,4 @@ Sets whether the user will be able to drag the feedback options modal or not
 
 `Default: true`
 
-## License
 
-feedback is released under the MIT license. (See `LICENSE`)
