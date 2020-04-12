@@ -624,13 +624,12 @@ $.feedback = function (options) {
                     if (typeof settings.postExtraInfo === 'function') {
                         post.extraInfo = settings.postExtraInfo();
                     }
-                    data = {feedback: JSON.stringify(post)};
 		    $('#feedback-module').append(settings.tpl.submitLoading);
                     $.ajax({
                         url: settings.endpoint,
-                        dataType: 'json',
+                        contentType: 'application/json',
                         type: 'POST',
-                        data: data,
+                        data: JSON.stringify(post),
                         success: function() {
 			    $('#feedback-submit-loading').remove();
                             $('#feedback-module').append(settings.tpl.submitSuccess);
