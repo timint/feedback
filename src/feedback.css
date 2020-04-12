@@ -29,7 +29,7 @@
   position: fixed;
 }
 .feedback-logo {
-  //width: 34px;
+  width: 34px;
   margin-bottom: 16px;
   font-size: 16px;
   font-weight: normal;
@@ -109,13 +109,13 @@
   position: fixed;
   width: 80%!important;
   max-width: 540px;
-  //height: 275px;
+  height: 275px;
 }
 #feedback-overview {
   display: none;
-  //top: 10%;
-  //left: 50%;
-  //margin-left: -420px;
+  top: 10%;
+  left: 50%;
+  margin-left: -420px;
   position: fixed;
   width: 80%!important;
   max-width: 840px!important;
@@ -125,8 +125,8 @@
 #feedback-submit-loading,
 #feedback-submit-success {
   top: 30%;
-  //left: 50%;
-  //margin-left: -300px;
+  left: 50%;
+  margin-left: -300px;
   display: block;
   position: fixed;
   max-width: 600px;
@@ -146,11 +146,11 @@
   text-align: center;
   cursor: pointer;
   font-family: 'Open sans';
-  border: 1px solid #dcdcdc;
+  border: 1px solid #f8f8f8;
   border: 1px solid rgba(0,0,0,0.1);
-  color: white;
+  color: #333;
   border-radius: 5px;
-  background-color: #2a2a2a;
+  background-color: #f8f8f8;
 }
 .feedback-btn-gray:hover {
   color: #333;
